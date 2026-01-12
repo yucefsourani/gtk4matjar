@@ -57,3 +57,5 @@ TRANSLATOR_CREDITS      = 'translator-credits'
 ```bash
 python ./create_py_gtk4temp.py
 ```
+
+4.read README.md file.
