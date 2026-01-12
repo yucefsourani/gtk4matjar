@@ -1,0 +1,11 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/{{ ID_NAME }}.desktop.in
+data/{{ ID_NAME }}.metainfo.xml.in
+data/{{ ID_NAME }}.gschema.xml
+src/{{ NEW_NAME }}/application.py
+src/{{ NEW_NAME }}/window.py
+src/{{ NEW_NAME }}/gstreamer.py
+src/{{ NEW_NAME }}/__main__.py
+src/{{ NEW_NAME }}/paths.py
+src/{{ NEW_NAME }}/resources/ui/window.ui

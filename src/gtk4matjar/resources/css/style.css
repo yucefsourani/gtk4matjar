@@ -1,0 +1,56 @@
+
+
+/* Welcome page styling */
+.title-1 {
+    font-weight: 800;
+    font-size: 24pt;
+}
+
+/* Card styling */
+.card {
+    border-radius: 12px;
+    padding: 24px;
+}
+
+/* Custom button styling */
+button.primary-action {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Status indicator */
+.status-indicator {
+    min-width: 12px;
+    min-height: 12px;
+    border-radius: 6px;
+}
+
+.status-indicator.success {
+    background-color: #2ec27e;
+}
+
+.status-indicator.warning {
+    background-color: #e5a50a;
+}
+
+.status-indicator.error {
+    background-color: #c01c28;
+}
+
+/* Custom list styling */
+.custom-list row {
+    padding: 12px;
+    border-radius: 8px;
+    margin: 4px 8px;
+}
+
+/* Video player widget styling */
+.video-container {
+    background-color: #000000;
+    border-radius: 8px;
+}
+
+.player-controls {
+    padding: 8px 12px;
+}

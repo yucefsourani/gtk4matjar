@@ -1,0 +1,167 @@
+Metadata-Version: 2.4
+Name: {{ NEW_NAME }}
+Version: 0.1.0
+Summary: {{ SUMMARY }}
+Author-email: Developer <{{ DEV_EMAIL }}>
+License: {{ LICENSE_STR }}
+Project-URL: Homepage, {{ HOMEPAGE_WEB }}
+Project-URL: Repository, {{ WEBSITE }}
+Project-URL: Bug Tracker, {{ ISSUESITE }}
+Keywords: gtk4,libadwaita,gnome,desktop,application
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: X11 Applications :: GTK
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: {{ LICENSE_STR }}
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Desktop Environment :: Gnome
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PyGObject>=3.42.0
+Provides-Extra: dev
+Requires-Dist: pyinstaller>=6.0; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Dynamic: license-file
+
+# GTK4 {{ NEW_NAME }}
+
+{{ SUMMARY }}
+
+## Features
+
+- **Cross-platform**: Works on Linux, Windows, and macOS
+- **Modern UI**: Uses libadwaita for GNOME-style design
+- **GStreamer support**: Media playback with plugin handling
+- **PyInstaller ready**: Create portable executables with GStreamer plugins
+- **Flatpak ready**: Distribute on Linux with codec extensions
+- **Smart path handling**: Automatically detects runtime environment
+
+## Requirements
+
+### Linux
+```bash
+# Fedora
+sudo dnf install gtk4-devel libadwaita-devel python3-gobject
+
+# Ubuntu/Debian
+sudo apt install libgtk-4-dev libadwaita-1-dev python3-gi python3-gi-cairo gir1.2-gtk-4.0 gir1.2-adw-1
+
+# Arch Linux
+sudo pacman -S gtk4 libadwaita python-gobject
+```
+
+### Windows (MSYS2)
+```bash
+pacman -S mingw-w64-x86_64-gtk4 mingw-w64-x86_64-libadwaita mingw-w64-x86_64-python-gobject
+```
+
+### macOS (Homebrew)
+```bash
+brew install gtk4 libadwaita pygobject3
+```
+
+## Development
+
+### Run from source
+```bash
+# Clone and enter directory
+cd {{ NEW_NAME }}
+
+# Install in development mode
+pip install -e .
+
+# Run the application
+python -m {{ NEW_NAME }}
+```
+
+### Compile GResource (optional)
+```bash
+cd src/{{ NEW_NAME }}/resources
+glib-compile-resources {{ NEW_NAME }}.gresource.xml
+```
+
+## Packaging
+
+### PyInstaller (Portable)
+
+```bash
+# Install PyInstaller
+pip install pyinstaller
+
+# Compile GResource first
+cd src/{{ NEW_NAME }}/resources
+glib-compile-resources {{ NEW_NAME }}.gresource.xml
+cd ../../..
+
+# Build with spec file
+pyinstaller pyinstaller/{{ NEW_NAME }}.spec
+
+# Output in dist/{{ NEW_NAME }}/
+```
+
+#### Portable Mode
+
+Create a `portable.txt` file next to the executable to enable portable mode:
+```bash
+touch dist/{{ NEW_NAME }}/portable.txt
+```
+The app will store data in `dist/{{ NEW_NAME }}/data/` instead of user directories.
+
+### Flatpak
+
+```bash
+# Install Flatpak and flatpak-builder
+sudo dnf install flatpak flatpak-builder
+
+# Add Flathub repo
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install SDK
+flatpak install flathub org.gnome.Platform//46 org.gnome.Sdk//46
+
+# Build
+cd flatpak
+flatpak-builder --user --install --force-clean build-dir {{ IDE_NAME  }}.yml
+
+# Run
+flatpak run {{ IDE_NAME  }}
+```
+
+## Project Structure
+
+```
+{{ NEW_NAME }}/
+├── src/{{ NEW_NAME }}/          # Python package
+│   ├── __main__.py          # Entry point
+│   ├── application.py       # Adw.Application
+│   ├── window.py            # Main window
+│   ├── paths.py             # Path utilities
+│   └── resources/           # GResource files
+├── data/                    # Desktop file and icons
+├── pyinstaller/             # PyInstaller config
+├── flatpak/                 # Flatpak manifest
+├── pyproject.toml           # Python project config
+└── meson.build              # Meson build system
+```
+
+## Path Detection
+
+The `paths.py` module automatically detects the runtime environment:
+
+| Environment | Data Directory | User Data |
+|-------------|----------------|-----------|
+| Development | `./src/.../resources` | `~/.local/share/{{ NEW_NAME }}` |
+| PyInstaller | `sys._MEIPASS` | `./data` (portable) or user home |
+| Flatpak | `/app/share/{{ NEW_NAME }}` | `~/.var/app/{{ IDE_NAME  }}` |
+| System Install | `/usr/share/{{ NEW_NAME }}` | `~/.local/share/{{ NEW_NAME }}` |
+
+## License
+
+{{ LICENSE_STR }}

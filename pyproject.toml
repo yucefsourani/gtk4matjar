@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ NEW_NAME }}"
+version = "{{ VERSION }}"
+description = "{{ SUMMARY }}"
+readme = "README.md"
+license = {text = "{{ LICENSE_STR }}"}
+requires-python = ">=3.9"
+authors = [
+    {name = "{{ DEV_NAME }}", email = "{{ DEV_EMAIL }}"}
+]
+keywords = ["gtk4", "libadwaita", "gnome", "desktop", "application"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: {{ LICENSE_STR }})",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Desktop Environment :: Gnome",
+]
+dependencies = [
+    "PyGObject>=3.42.0",
+    "sqlmodel>=0.0.16",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pyinstaller>=6.0",
+    "pytest",
+]
+
+[project.scripts]
+{{ NEW_NAME }} = "{{ NEW_NAME }}.__main__:main"
+
+[project.gui-scripts]
+{{ NEW_NAME }}-gui = "{{ NEW_NAME }}.__main__:main"
+
+[project.urls]
+Homepage = "{{ HOMEPAGE_WEB }}"
+Repository = "{{ WEBSITE }}}"
+"Bug Tracker" = "{{ ISSUESITE }}"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+{{ NEW_NAME }} = [
+    "resources/*.gresource",
+    "resources/**/*.css",
+    "resources/**/*.ui",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

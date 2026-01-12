@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="{{ NEW_NAME }}">
+	<schema id="{{ ID_NAME }}" path="{{ GIORESOURCE_ID }}/">
+        <key name="width" type="i">
+          <default>200</default>
+        </key>
+        <key name="height" type="i">
+          <default>300</default>
+        </key>
+        <key name="is-maximized" type="b">
+          <default>true</default>
+        </key>
+        <key name="colorschemeenum" type="i">
+          <default>3</default>
+        </key>
+        <key name="is-fullscreen" type="b">
+          <default>false</default>
+        </key>
+        <key name="sourceui" type="b">
+          <default>true</default>
+        </key>
+	</schema>
+</schemalist>

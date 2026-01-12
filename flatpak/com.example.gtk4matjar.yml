@@ -1,0 +1,38 @@
+app-id: {{ ID_NAME }}
+runtime: org.gnome.Platform
+runtime-version: '{{ FLATPAK_RUNTIME_VERSION }}'
+sdk: org.gnome.Sdk
+command: {{ NEW_NAME }}
+
+finish-args:
+  # X11 + Wayland
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  # GPU acceleration
+  - --device=dri
+  # Sound
+  - --socket=pulseaudio
+  # Home directory access (read-only by default)
+  - --filesystem=home:ro
+  # Settings access
+  - --talk-name=org.freedesktop.Flatpak
+
+# GStreamer codecs extension
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    version: '23.08'
+    add-ld-path: .
+    no-autodownload: false
+    autodelete: false
+
+modules:
+  - name: {{ NEW_NAME }}
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: ..
+      # - type: git
+      #   url: '{{ WEBSITE  }}'
+      #   commit: 'GIT COMMIT HERE' 

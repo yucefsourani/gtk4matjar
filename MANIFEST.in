@@ -1,0 +1,19 @@
+include README.md
+include LICENSE
+include pyproject.toml
+include meson.build
+include create_py_gtk4temp.py
+include changelog.html
+include MANIFEST.in
+
+recursive-include src/{{ NEW_NAME }}/resources *
+recursive-include data *
+recursive-include bin *
+recursive-include flatpak *
+recursive-include pyinstaller *
+recursive-include po *
+recursive-include ./github *
+
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *.gresource

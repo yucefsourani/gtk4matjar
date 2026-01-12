@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=GTK4 {{ NEW_NAME }}
+Comment={{ SUMMARY }}
+Exec={{ NEW_NAME }}
+Icon={{ ID_NAME  }}
+Terminal=false
+Categories=Utility;
+Keywords=gtk;application;
+StartupNotify=true

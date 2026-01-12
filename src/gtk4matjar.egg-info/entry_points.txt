@@ -1,0 +1,5 @@
+[console_scripts]
+{{ NEW_NAME }} = {{ NEW_NAME }}.__main__:main
+
+[gui_scripts]
+{{ NEW_NAME }}-gui = {{ NEW_NAME }}.__main__:main

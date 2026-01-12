@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>{{ ID_NAME }}</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>{{ LICENSE_STR }}</project_license>
+
+  <name>{{ APP_NAME }}</name>
+  <summary>{{ SUMMARY }}</summary>
+  <description>
+    <p>{{ SUMMARY }}</p>
+  </description>
+
+  <developer id="tld.vendor">
+    <name>{{ DEV_NAME }}</name>
+  </developer>
+
+  <!-- Required: Should be a link to the upstream homepage for the component -->
+  <url type="homepage">{{ HOMEPAGE_WEB }}</url>
+  <!-- Recommended: It is highly recommended for open-source projects to display the source code repository -->
+  <url type="vcs-browser">{{ WEBSITE  }}</url>
+  <!-- Should point to the software's bug tracking system, for users to report new bugs -->
+  <url type="bugtracker">{{ ISSUESITE }}</url>
+  <!-- Should link a FAQ page for this software, to answer some of the most-asked questions in detail -->
+  <!-- URLs of this type should point to a webpage where users can submit or modify translations of the upstream project -->
+  <url type="translate">{{ WEBSITE  }}</url>
+  <url type="faq">{{ WEBSITE  }}</url>
+  <!-- Should provide a web link to an online user's reference, a software manual or help page -->
+  <url type="help">{{ WEBSITE  }}</url>
+  <!-- URLs of this type should point to a webpage showing information on how to donate to the described software project -->
+  <url type="donation">{{ WEBSITE  }}</url>
+  <!-- This could for example be an HTTPS URL to an online form or a page describing how to contact the developer -->
+  <url type="contact">{{ WEBSITE  }}</url>
+  <!-- URLs of this type should point to a webpage showing information on how to contribute to the described software project -->
+  <url type="contribute">{{ WEBSITE  }}</url>
+
+  <translation type="gettext">{{ NEW_NAME }}</translation>
+  <!-- All graphical applications having a desktop file must have this tag in the MetaInfo.
+     If this is present, appstreamcli compose will pull icons, keywords and categories from the desktop file. -->
+  <launchable type="desktop-id">{{ ID_NAME }}.desktop</launchable>
+  <!-- Use the OARS website (https://hughsie.github.io/oars/generate.html) to generate these and make sure to use oars-1.1 -->
+  <content_rating type="oars-1.1" />
+
+  <!-- Applications should set a brand color in both light and dark variants like so -->
+  <branding>
+    <color type="primary" scheme_preference="light">#ff00ff</color>
+    <color type="primary" scheme_preference="dark">#993d3d</color>
+  </branding>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>{{ WEBSITE  }}/blob/{{ GITMAIN_BRANCH }}/Screenshot1.png</image>
+      <caption>Screenshot1</caption>
+    </screenshot>
+    <screenshot>
+      <image>{{ WEBSITE  }}/blob/{{ GITMAIN_BRANCH }}/Screenshot2.png</image>
+      <caption>Screenshot2</caption>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="{{ VERSION }}" date="{{ DATE_NOW }}">
+      <url type="details">{{ WEBSITE  }}/blob/{{ GITMAIN_BRANCH }}/changelog.html#version_{{ VERSION }}</url>
+      <description translate="no">
+        <p>Release description</p>
+        <ul>
+          <li>Initial release</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+</component>

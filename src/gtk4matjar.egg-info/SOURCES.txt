@@ -1,0 +1,27 @@
+LICENSE
+MANIFEST.in
+README.md
+meson.build
+pyproject.toml
+bin/{{ NEW_NAME }}.in
+data/{{ IDE_NAME  }}.desktop
+data/icons/hicolor/scalable/apps/{{ IDE_NAME  }}.svg
+flatpak/{{ IDE_NAME  }}.yml
+pyinstaller/{{ NEW_NAME }}.spec
+pyinstaller/hooks/hook-gi.py
+pyinstaller/hooks/hook-gstreamer.py
+src/{{ NEW_NAME }}/__init__.py
+src/{{ NEW_NAME }}/__main__.py
+src/{{ NEW_NAME }}/application.py
+src/{{ NEW_NAME }}/gstreamer.py
+src/{{ NEW_NAME }}/paths.py
+src/{{ NEW_NAME }}/window.py
+src/{{ NEW_NAME }}.egg-info/PKG-INFO
+src/{{ NEW_NAME }}.egg-info/SOURCES.txt
+src/{{ NEW_NAME }}.egg-info/dependency_links.txt
+src/{{ NEW_NAME }}.egg-info/entry_points.txt
+src/{{ NEW_NAME }}.egg-info/requires.txt
+src/{{ NEW_NAME }}.egg-info/top_level.txt
+src/{{ NEW_NAME }}/resources/{{ NEW_NAME }}.gresource.xml
+src/{{ NEW_NAME }}/resources/css/style.css
+src/{{ NEW_NAME }}/resources/ui/window.ui
