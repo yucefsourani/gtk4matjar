@@ -58,4 +58,4 @@ TRANSLATOR_CREDITS      = 'translator-credits'
 python ./create_py_gtk4temp.py
 ```
 
-4.read README.md file.
+4.read README.md again.
