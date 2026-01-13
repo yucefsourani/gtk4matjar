@@ -69,6 +69,7 @@ datas.append((str(RESOURCES_DIR), "resources"))
 hiddenimports = [
     'gi',
     'gi.repository.Gtk',
+    'gi.repository.Soup',
     'gi.repository.Gdk',
     'gi.repository.GLib',
     'gi.repository.GObject',
@@ -94,6 +95,7 @@ hiddenimports = [
 hiddenimports += collect_submodules('gi')
 
 # SQLModel, SQLAlchemy, Pydantic imports
+hiddenimports += collect_submodules('sqlite3')
 hiddenimports += collect_submodules('sqlmodel')
 hiddenimports += collect_submodules('sqlalchemy')
 hiddenimports += collect_submodules('pydantic')
