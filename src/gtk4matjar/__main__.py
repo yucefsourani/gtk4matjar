@@ -20,7 +20,6 @@ if hasattr(sys, '_MEIPASS'):
         lang = gettext.translation('{{ NEW_NAME }}', localedir, languages=langs, fallback=True)
         lang.install()
     except Exception as e:
-        # في حال حدوث أي خطأ غير متوقع، نكتفي بالتثبيت الافتراضي
         print(f"Warning: Could not load translations: {e}")
         gettext.install('{{ NEW_NAME }}', localedir)
 
