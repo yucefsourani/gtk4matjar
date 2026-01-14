@@ -17,7 +17,6 @@ hiddenimports += [
     'gi.repository.GLib',
     'gi.repository.GObject',
     'gi.repository.Gio',
-    'gi.repository.GioWin32',
     'gi.repository.Pango',
     'gi.repository.PangoCairo',
     'gi.repository.GdkPixbuf',
@@ -37,7 +36,10 @@ hiddenimports += [
     'gi.repository.GstGL',
 ]
 
-# Collect typelib files
+if sys.platform == 'win32':
+    hiddenimports += collect_submodules('ctype')
+    hiddenimports.append('gi.repository.GioWin32')
+
 datas = []
 
 def find_typelibs():
@@ -83,7 +85,6 @@ required_typelibs = [
     'GLib-2.0',
     'GObject-2.0',
     'Gio-2.0',
-    'GioWin32-2.0',
     'Pango-1.0',
     'PangoCairo-1.0',
     'GdkPixbuf-2.0',
@@ -111,6 +112,9 @@ required_typelibs = [
     'GstRtsp-1.0',
     'GstSdp-1.0',
 ]
+
+if sys.platform == 'win32':
+    required_typelibs.append('GioWin32-2.0')
 
 for typelib_dir in find_typelibs():
     for typelib_name in required_typelibs:
