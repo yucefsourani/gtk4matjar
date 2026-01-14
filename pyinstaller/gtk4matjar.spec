@@ -74,7 +74,6 @@ hiddenimports = [
     'gi.repository.GLib',
     'gi.repository.GObject',
     'gi.repository.Gio',
-    'gi.repository.GioWin32',
     'gi.repository.Pango',
     'gi.repository.PangoCairo',
     'gi.repository.GdkPixbuf',
@@ -110,6 +109,8 @@ hiddenimports += [
 
 # Platform-specific configurations
 if sys.platform == 'win32':
+    hiddenimports += collect_submodules('ctype')
+    hiddenimports.append('gi.repository.GioWin32')
     # Windows: collect GTK4 DLLs from MSYS2/mingw64
     
     # Try to find GTK4 installation
@@ -254,10 +255,6 @@ a = Analysis(
     runtime_hooks=[],
     excludes=[
         'tkinter',
-        'matplotlib',
-        'numpy',
-        'scipy',
-        'PIL',
         'PyQt5',
         'PyQt6',
         'PySide2',
@@ -277,13 +274,6 @@ if sys.platform == 'win32':
         'ucrtbase',
         # Boost Python (from OpenEXR, not needed)
         'libboost_python',
-        # OpenEXR/Imath (not needed for basic media playback)
-        'libImath',
-        'libOpenEXR',
-        'libIex',
-        'libIlmThread',
-        'libPyImath',
-        'libPyIex',
     ]
     
     filtered_binaries = []
