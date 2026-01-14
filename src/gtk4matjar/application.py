@@ -1,6 +1,7 @@
 """Main application class."""
 
 import gi
+import sys
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -22,7 +23,7 @@ class Application(Adw.Application):
     def __init__(self):
         super().__init__(
             application_id=APP_ID,
-            flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
+            flags=Gio.ApplicationFlags.NON_UNIQUE if hasattr(sys, '_MEIPASS') else Gio.ApplicationFlags.DEFAULT_FLAGS,
             resource_base_path='{{ GIORESOURCE_ID }}'
         )
 
