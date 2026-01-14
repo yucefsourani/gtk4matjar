@@ -37,7 +37,7 @@ hiddenimports += [
 ]
 
 if sys.platform == 'win32':
-    hiddenimports += collect_submodules('ctype')
+    hiddenimports += collect_submodules('ctypes')
     hiddenimports.append('gi.repository.GioWin32')
 
 datas = []
