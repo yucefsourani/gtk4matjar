@@ -15,6 +15,8 @@ if hasattr(sys, '_MEIPASS'):
     import gettext
     from pathlib import Path
     import ctypes
+    import os
+    os.environ['FONTCONFIG_PATH'] = os.path.join(sys._MEIPASS, 'etc', 'fonts')
     localedir  = str(Path(sys._MEIPASS) / "share" / "locale")
     def get_windows_language():
         try:
