@@ -9,19 +9,32 @@ gi.require_version('Adw', '1')
 
 from {{ NEW_NAME }}.paths import get_resource_dir,ensure_user_dirs
 
+
 if hasattr(sys, '_MEIPASS'):
     import locale
     import gettext
     from pathlib import Path
+    import ctypes
     localedir  = str(Path(sys._MEIPASS) / "share" / "locale")
+    def get_windows_language():
+        try:
+            windll = ctypes.windll.kernel32
+            lang_id = windll.GetUserDefaultUILanguage()
+            lang_code = locale.windows_locale.get(lang_id)
+            if lang_code:
+                return [lang_code.split('_')[0],lang_code  ] 
+        except:
+            pass
+        return ['en','en_US']
+    
     try:
-        sys_lang_code, _ = locale.getdefaultlocale()
-        langs = [sys_lang_code] if sys_lang_code else None
-        lang = gettext.translation('{{ NEW_NAME }}', localedir, languages=langs, fallback=True)
+        sys_lang_code = get_windows_language()
+        lang = gettext.translation('{{ NEW_NAME }}', localedir, languages=sys_lang_code, fallback=True)
         lang.install()
     except Exception as e:
         print(f"Warning: Could not load translations: {e}")
         gettext.install('{{ NEW_NAME }}', localedir)
+
 
 def __load_resources():
     """Load GResource file."""
