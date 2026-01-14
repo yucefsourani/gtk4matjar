@@ -116,7 +116,7 @@ hiddenimports += [
 
 # Platform-specific configurations
 if sys.platform == 'win32':
-    hiddenimports += collect_submodules('ctype')
+    hiddenimports += collect_submodules('ctypes')
     hiddenimports.append('gi.repository.GioWin32')
     # Windows: collect GTK4 DLLs from MSYS2/mingw64
     
