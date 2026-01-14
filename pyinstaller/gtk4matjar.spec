@@ -19,11 +19,10 @@ DATA_DIR = PROJECT_DIR / "data"
 PO_DIR = PROJECT_DIR / "po"
 RESOURCES_DIR = SRC_DIR / "{{ NEW_NAME }}" / "resources"
 gschema_xml   = DATA_DIR / "{{ ID_NAME }}.gschema.xml"
-
+FONTS_DIR     = DATA_DIR / "fonts"
 # Application metadata
 APP_NAME = "{{ NEW_NAME }}"
 APP_ID = "{{ ID_NAME  }}"
-
 
 def install_po(prefix_dir):
     locale_dir = prefix_dir / "locale"
@@ -61,6 +60,8 @@ if not gresource_file.exists() and gresource_xml.exists():
 # Collect GTK4 and libadwaita data
 datas = []
 
+if FONTS_DIR.exists():
+    datas.append((str(FONTS_DIR), "shate/fonts"))
 # Add application resources
 datas.append((str(RESOURCES_DIR), "resources"))
 
