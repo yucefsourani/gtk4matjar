@@ -2,14 +2,6 @@
 """Entry point for the application."""
 
 import sys
-import gi
-from gi.repository import Gio
-gi.require_version('Gtk', '4.0')
-gi.require_version('Adw', '1')
-
-from {{ NEW_NAME }}.paths import get_resource_dir,ensure_user_dirs
-
-
 if hasattr(sys, '_MEIPASS'):
     import locale
     import gettext
@@ -36,6 +28,16 @@ if hasattr(sys, '_MEIPASS'):
     except Exception as e:
         print(f"Warning: Could not load translations: {e}")
         gettext.install('{{ NEW_NAME }}', localedir)
+        
+import gi
+from gi.repository import Gio
+gi.require_version('Gtk', '4.0')
+gi.require_version('Adw', '1')
+
+from {{ NEW_NAME }}.paths import get_resource_dir,ensure_user_dirs
+
+
+
 
 
 def __load_resources():
