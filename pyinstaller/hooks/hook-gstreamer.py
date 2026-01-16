@@ -217,15 +217,17 @@ if gst_paths['typelibs']:
 
 # Collect GStreamer helper binaries
 if sys.platform != 'win32':
+    gst_helpers = ['gst-plugin-scanner', 'gst-ptp-helper']
+else:
     gst_helpers = ['gst-plugin-scanner.exe', 'gst-ptp-helper.exe']
-    if gst_paths['lib']:
-        libexec_dirs = [
-            gst_paths['lib'].parent / 'libexec' / 'gstreamer-1.0',
-            gst_paths['lib'] / 'gstreamer-1.0',
-        ]
-        for libexec_dir in libexec_dirs:
-            if libexec_dir.exists():
-                for helper in gst_helpers:
-                    helper_path = libexec_dir / helper
-                    if helper_path.exists():
-                        binaries.append((str(helper_path), '.'))
+if gst_paths['lib']:
+    libexec_dirs = [
+        gst_paths['lib'].parent / 'libexec' / 'gstreamer-1.0',
+        gst_paths['lib'] / 'gstreamer-1.0',
+    ]
+    for libexec_dir in libexec_dirs:
+        if libexec_dir.exists():
+            for helper in gst_helpers:
+                helper_path = libexec_dir / helper
+                if helper_path.exists():
+                    binaries.append((str(helper_path), '.'))
