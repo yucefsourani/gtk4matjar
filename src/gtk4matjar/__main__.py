@@ -8,7 +8,9 @@ if hasattr(sys, '_MEIPASS'):
     from pathlib import Path
     import ctypes
     import os
-    from gi.repository import Pango
+    import gi
+    gi.require_version('PangoCairo', '1.0')
+    from gi.repository import PangoCairo
     
     
     os.environ['GST_PLUGIN_SYSTEM_PATH'] = os.path.join(sys._MEIPASS, 'gst_plugins')
@@ -19,7 +21,7 @@ if hasattr(sys, '_MEIPASS'):
     def load_custom_fonts():
         base_path = sys._MEIPASS
         fonts_dir = os.path.join(base_path, "share", "fonts")
-        font_map = Pango.CairoFontMap.get_default()
+        font_map = PangoCairo.FontMap.get_default()
         
         fonts = [font for font in os.listdir(fonts_dir) ]
         for font in fonts:
