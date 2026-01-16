@@ -19,7 +19,7 @@ DATA_DIR = PROJECT_DIR / "data"
 PO_DIR = PROJECT_DIR / "po"
 RESOURCES_DIR = SRC_DIR / "{{ NEW_NAME }}" / "resources"
 gschema_xml   = DATA_DIR / "{{ ID_NAME }}.gschema.xml"
-FONTS_DIR     = PROJECT_DIR / "pyinstaller" / "fonts"
+FONTS_DIR     = DATA_DIR / "fonts"
 
 
 # Application metadata
