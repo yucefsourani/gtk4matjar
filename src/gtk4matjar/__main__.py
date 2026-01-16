@@ -8,15 +8,29 @@ if hasattr(sys, '_MEIPASS'):
     from pathlib import Path
     import ctypes
     import os
+    from gi.repository import Pango
     
-    os.environ['FONTCONFIG_FILE'] = os.path.join(sys._MEIPASS, 'etc', 'fonts', 'fonts.conf')
-    os.environ['FONTCONFIG_PATH'] = os.path.join(sys._MEIPASS, 'etc', 'fonts')
     
     os.environ['GST_PLUGIN_SYSTEM_PATH'] = os.path.join(sys._MEIPASS, 'gst_plugins')
     os.environ['GST_PLUGIN_PATH'] = os.path.join(sys._MEIPASS, 'gst_plugins')
     os.environ['GST_PLUGIN_SCANNER'] = os.path.join(sys._MEIPASS,'gst-plugin-scanner.exe')
     os.environ['GST_REGISTRY_FORK'] = 'yes'
+
+    def load_custom_fonts():
+        base_path = sys._MEIPASS
+        fonts_dir = os.path.join(base_path, "share", "fonts")
+        font_map = Pango.CairoFontMap.get_default()
+        
+        fonts = [font for font in os.listdir(fonts_dir) ]
+        for font in fonts:
+            font_path = os.path.join(fonts_dir, font)
+            try:
+                font_map.add_font_file(font_path)
+                print(f"Loaded: {font}")
+            except Exception as e:
+                print(f"Error loading {font}: {e}")
     
+    load_custom_fonts()
     localedir  = str(Path(sys._MEIPASS) / "share" / "locale")
     def get_windows_language():
         try:
