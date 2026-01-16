@@ -65,7 +65,7 @@ datas = []
 
 
 if FONTS_DIR.exists():
-    datas.append((str(FONTS_DIR), "shate/fonts"))
+    datas.append((str(FONTS_DIR), "share/fonts"))
 # Add application resources
 datas.append((str(RESOURCES_DIR), "resources"))
 
