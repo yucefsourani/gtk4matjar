@@ -33,6 +33,7 @@ if hasattr(sys, '_MEIPASS'):
                     print(f"Error loading {font}: {e}")
     
     load_custom_fonts()
+
     localedir  = str(Path(sys._MEIPASS) / "share" / "locale")
     def get_windows_language():
         try:
@@ -44,9 +45,18 @@ if hasattr(sys, '_MEIPASS'):
                 lang_code = locale.windows_locale.get(lang_id)
             if lang_code:
                 lang_code = lang_code.split('.')[0]
-                return [lang_code, lang_code.split('_')[0]] 
-        except:
-            pass
+                langs = []
+                for l in [lang_code ,lang_code.split('_')[0]]:
+                    mo_l = os.path.join(localedir , l , "LC_MESSAGES" , "{{ NEW_NAME }}.mo")
+                    if os.path.isfile(mo_l):
+                        os.environ['LANG'] = l 
+                        langs.insert(0,l)
+                    else:
+                        langs.append(l)
+                return langs 
+        except Exception as e:
+            print(e)
+        os.environ['LANG'] = "en"
         return ['en','en_US']
     
     try:
