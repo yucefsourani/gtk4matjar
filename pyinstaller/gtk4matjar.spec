@@ -64,8 +64,13 @@ if not gresource_file.exists() and gresource_xml.exists():
 # Collect GTK4 and libadwaita data
 datas = []
 
-
-
+licenses = {
+            "{{ NEW_NAME }}" : PROJECT_DIR / "LICENSE"
+           }
+for license_folder_name,license_file in licenses.items():
+    if license_file.exists():
+        datas.append((str(licenses),f"_licenses/{license_folder_name}"))
+           
 if FONTS_DIR.exists():
     datas.append((str(FONTS_DIR), "share/fonts"))
 # Add application resources
