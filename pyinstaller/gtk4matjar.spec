@@ -25,7 +25,10 @@ os.makedirs(str(FONTS_DIR),exist_ok=True)
 # Application metadata
 APP_NAME = "{{ NEW_NAME }}"
 APP_ID = "{{ ID_NAME  }}"
-
+licenses = {
+            "{{ NEW_NAME }}" : PROJECT_DIR / "LICENSE"
+           }
+           
 def install_po(prefix_dir):
     locale_dir = prefix_dir / "locale"
     os.makedirs(str(locale_dir),exist_ok=True)
@@ -64,9 +67,7 @@ if not gresource_file.exists() and gresource_xml.exists():
 # Collect GTK4 and libadwaita data
 datas = []
 
-licenses = {
-            "{{ NEW_NAME }}" : PROJECT_DIR / "LICENSE"
-           }
+
 for license_folder_name,license_file in licenses.items():
     if license_file.exists():
         datas.append((str(licenses),f"_licenses/{license_folder_name}"))
