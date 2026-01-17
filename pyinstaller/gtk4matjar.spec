@@ -31,7 +31,9 @@ def install_po(prefix_dir):
     os.makedirs(str(locale_dir),exist_ok=True)
     for po in glob.glob(f"{PO_DIR}/*.po"):
         mo      = "{{ NEW_NAME }}.mo"
-        mo_file =  os.path.join(str(locale_dir),os.path.basename(po).split(".")[0],"LC_MESSAGES",mo)
+        mo_location =  os.path.join(str(locale_dir),os.path.basename(po).split(".")[0],"LC_MESSAGES")
+        os.makedirs(mo_location,exist_ok=True)
+        mo_file =  os.path.join(mo_location,mo)
         subprocess.run(["msgfmt",po,"-o",mo_file], check=True)
     return locale_dir
         
